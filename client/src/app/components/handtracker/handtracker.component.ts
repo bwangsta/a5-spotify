@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, Output, EventEmitter } from "@angular/core";
 import * as handTrack from "handtrackjs";
 import { PredictionEvent } from "../../prediction-event";
+import { SpotifyService } from "src/app/services/spotify.service";
 
 @Component({
   selector: "app-handtracker",
@@ -34,7 +35,7 @@ export class HandtrackerComponent implements OnInit {
     scoreThreshold: 0.6, // confidence threshold for predictions.
   };
 
-  constructor() {}
+  constructor(private spotifyService: SpotifyService) {}
 
   ngOnInit(): void {
     handTrack.load(this.modelParams).then((lmodel: any) => {
@@ -124,8 +125,10 @@ export class HandtrackerComponent implements OnInit {
             this.stopDetection();
           } else if (openhands == 1) this.detectedGesture = "Open Hand";
 
-          if (closedhands > 1) this.detectedGesture = "Two Closed Hands";
-          else if (closedhands == 1) this.detectedGesture = "Closed Hand";
+          if (closedhands > 1) {
+            this.detectedGesture = "Two Closed Hands";
+            window.location.href = this.spotifyService.profileLink;
+          } else if (closedhands == 1) this.detectedGesture = "Closed Hand";
 
           if (pointing > 1) this.detectedGesture = "Two Hands Pointing";
           else if (pointing == 1) this.detectedGesture = "Hand Pointing";
