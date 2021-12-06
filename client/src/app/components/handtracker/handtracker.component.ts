@@ -23,7 +23,7 @@ export class HandtrackerComponent implements OnInit {
   width: string = "400";
   height: string = "400";
 
-  private;
+  private prevX: number = -100;
   private model: any = null;
   private runInterval: any = null;
 
@@ -98,6 +98,7 @@ export class HandtrackerComponent implements OnInit {
           let closedhands = 0;
           let pointing = 0;
           let pinching = 0;
+          let swiping = 0;
           for (let p of predictions) {
             //uncomment to view label and position data
             console.log(
@@ -112,7 +113,21 @@ export class HandtrackerComponent implements OnInit {
                 p.bbox[3]
             );
 
-            if (p.label == "open") openhands++;
+            if (p.label == "open") {
+              openhands++;
+              if (this.prevX === -100) {
+                this.prevX = p.bbox[0];
+              } else if (this.prevX > p.bbox[0] + 100) {
+                this.detectedGesture = "Swiping Left";
+                swiping++;
+                this.prevX = p.bbox[0];
+              } else if (this.prevX + 100 < p.bbox[0]) {
+                this.detectedGesture = "Swiping Right";
+                swiping++;
+                this.prevX = p.bbox[0];
+              }
+            }
+
             if (p.label == "closed") closedhands++;
             if (p.label == "point") pointing++;
             if (p.label == "pinch") pinching++;
@@ -120,10 +135,21 @@ export class HandtrackerComponent implements OnInit {
 
           // These are just a few options! What about one hand open and one hand closed!?
 
-          if (openhands > 1) {
-            this.detectedGesture = "Two Open Hands";
-            this.stopDetection();
-          } else if (openhands == 1) this.detectedGesture = "Open Hand";
+          if (swiping > 0) {
+            if (this.detectedGesture === "Swiping Left") {
+              console.log("swipe swipe swipe swipe");
+            } else {
+              console.log("pussy hole");
+            }
+          }
+          if (swiping == 0) {
+            if (openhands > 1) {
+              this.detectedGesture = "Two Open Hands";
+              this.stopDetection();
+            } else if (openhands == 1) {
+              this.detectedGesture = "Open Hand";
+            }
+          }
 
           if (closedhands > 1) {
             this.detectedGesture = "Two Closed Hands";
