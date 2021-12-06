@@ -1,36 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ArtistData } from '../../data/artist-data';
-import { TrackData } from '../../data/track-data';
-import { AlbumData } from '../../data/album-data';
-import { SpotifyService } from 'src/app/services/spotify.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { ArtistData } from "../../data/artist-data";
+import { TrackData } from "../../data/track-data";
+import { AlbumData } from "../../data/album-data";
+import { SpotifyService } from "src/app/services/spotify.service";
+import { PredictionEvent } from "src/app/prediction-event";
 
 @Component({
-    selector: 'app-album-page',
-    templateUrl: './album-page.component.html',
-    styleUrls: ['./album-page.component.css']
+  selector: "app-album-page",
+  templateUrl: "./album-page.component.html",
+  styleUrls: ["./album-page.component.css"],
 })
 export class AlbumPageComponent implements OnInit {
-    albumId: string;
-    album: AlbumData;
-    tracks: TrackData[];
+  albumId: string;
+  album: AlbumData;
+  tracks: TrackData[];
+  gesture: string;
 
+  constructor(private route: ActivatedRoute, private spotifyService: SpotifyService) {}
 
-    constructor(private route: ActivatedRoute, private spotifyService: SpotifyService) { }
+  ngOnInit() {
+    this.albumId = this.route.snapshot.paramMap.get("id");
+    //TODO: inject spotifyService and use it to get the album data and the tracks for the album
+    this.spotifyService.getAlbum(this.albumId).then((data) => {
+      this.album = data;
+    });
 
-    ngOnInit() {
-        this.albumId = this.route.snapshot.paramMap.get('id');
-        //TODO: inject spotifyService and use it to get the album data and the tracks for the album
-        this.spotifyService.getAlbum(this.albumId).then(data => {
-            this.album = data;
-        });
+    this.spotifyService.getTracksForAlbum(this.albumId).then((data) => {
+      this.tracks = data;
+    });
 
-        this.spotifyService.getTracksForAlbum(this.albumId).then(data => {
-            this.tracks = data;
-        });
+    this.spotifyService.link = this.album.url;
 
-        let albumURI = "https://open.spotify.com/embed/album/" + this.albumId;
-        document.querySelector("#musicPlayer").setAttribute('src', albumURI);
+    let albumURI = "https://open.spotify.com/embed/album/" + this.albumId;
+    document.querySelector("#musicPlayer").setAttribute("src", albumURI);
+  }
+
+  prediction(event: PredictionEvent) {
+    this.gesture = event.getPrediction();
+    if (this.gesture === "Two Closed Hands") {
+      window.location.href = this.spotifyService.link;
     }
-
+  }
 }

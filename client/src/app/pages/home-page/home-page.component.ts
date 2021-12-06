@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { PredictionEvent } from "../../prediction-event";
+import { SpotifyService } from "src/app/services/spotify.service";
 
 @Component({
   selector: "app-home-page",
@@ -8,11 +9,14 @@ import { PredictionEvent } from "../../prediction-event";
 })
 export class HomePageComponent implements OnInit {
   gesture: String = "";
-  constructor() {}
+  constructor(private spotifyService: SpotifyService) {}
 
   ngOnInit(): void {}
 
   prediction(event: PredictionEvent) {
     this.gesture = event.getPrediction();
+    if (this.gesture === "Two Closed Hands") {
+      window.location.href = this.spotifyService.link;
+    }
   }
 }

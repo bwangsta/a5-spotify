@@ -12,7 +12,7 @@ import { TrackFeature } from "../data/track-feature";
 })
 export class SpotifyService {
   expressBaseUrl: string = "http://localhost:8888";
-  profileLink: string;
+  link: string;
 
   constructor(private http: HttpClient) {}
 

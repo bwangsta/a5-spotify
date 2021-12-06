@@ -135,13 +135,6 @@ export class HandtrackerComponent implements OnInit {
 
           // These are just a few options! What about one hand open and one hand closed!?
 
-          if (swiping > 0) {
-            if (this.detectedGesture === "Swiping Left") {
-              console.log("swipe swipe swipe swipe");
-            } else {
-              console.log("pussy hole");
-            }
-          }
           if (swiping == 0) {
             if (openhands > 1) {
               this.detectedGesture = "Two Open Hands";
@@ -153,7 +146,6 @@ export class HandtrackerComponent implements OnInit {
 
           if (closedhands > 1) {
             this.detectedGesture = "Two Closed Hands";
-            window.location.href = this.spotifyService.profileLink;
           } else if (closedhands == 1) this.detectedGesture = "Closed Hand";
 
           if (pointing > 1) this.detectedGesture = "Two Hands Pointing";

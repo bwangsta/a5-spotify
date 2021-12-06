@@ -4,6 +4,7 @@ import { ArtistData } from "../../data/artist-data";
 import { TrackData } from "../../data/track-data";
 import { AlbumData } from "../../data/album-data";
 import { SpotifyService } from "src/app/services/spotify.service";
+import { PredictionEvent } from "src/app/prediction-event";
 
 @Component({
   selector: "app-artist-page",
@@ -16,6 +17,7 @@ export class ArtistPageComponent implements OnInit {
   relatedArtists: ArtistData[];
   topTracks: TrackData[];
   albums: AlbumData[];
+  gesture: string;
 
   constructor(private route: ActivatedRoute, private spotifyService: SpotifyService) {}
 
@@ -39,7 +41,16 @@ export class ArtistPageComponent implements OnInit {
       this.topTracks = data;
     });
 
+    this.spotifyService.link = this.artist.url;
+
     let artistURI = "https://open.spotify.com/embed/artist/" + this.artistId;
     document.querySelector("#musicPlayer").setAttribute("src", artistURI);
+  }
+
+  prediction(event: PredictionEvent) {
+    this.gesture = event.getPrediction();
+    if (this.gesture === "Two Closed Hands") {
+      window.location.href = this.spotifyService.link;
+    }
   }
 }
