@@ -24,13 +24,12 @@ export class AlbumPageComponent implements OnInit {
     //TODO: inject spotifyService and use it to get the album data and the tracks for the album
     this.spotifyService.getAlbum(this.albumId).then((data) => {
       this.album = data;
+      this.spotifyService.link = this.album.url;
     });
 
     this.spotifyService.getTracksForAlbum(this.albumId).then((data) => {
       this.tracks = data;
     });
-
-    this.spotifyService.link = this.album.url;
 
     let albumURI = "https://open.spotify.com/embed/album/" + this.albumId;
     document.querySelector("#musicPlayer").setAttribute("src", albumURI);

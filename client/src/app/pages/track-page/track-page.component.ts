@@ -25,14 +25,13 @@ export class TrackPageComponent implements OnInit {
     //TODO: Inject the spotifyService and use it to get the track data and it's audio features
     this.spotifyService.getTrack(this.trackId).then((data) => {
       this.track = data;
+      this.spotifyService.link = this.track.url;
     });
 
     this.spotifyService.getAudioFeaturesForTrack(this.trackId).then((data) => {
       this.audioFeatures = data;
       console.log(this.audioFeatures);
     });
-
-    this.spotifyService.link = this.track.url;
 
     let trackURI = "https://open.spotify.com/embed/track/" + this.trackId;
     document.querySelector("#musicPlayer").setAttribute("src", trackURI);

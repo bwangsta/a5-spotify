@@ -27,6 +27,7 @@ export class ArtistPageComponent implements OnInit {
     this.spotifyService.getArtist(this.artistId).then((data) => {
       // gets artist data from spotify
       this.artist = data; // sets the retrieved data to this.artist
+      this.spotifyService.link = this.artist.url;
     });
 
     this.spotifyService.getRelatedArtists(this.artistId).then((data) => {
@@ -40,8 +41,6 @@ export class ArtistPageComponent implements OnInit {
     this.spotifyService.getTopTracksForArtist(this.artistId).then((data) => {
       this.topTracks = data;
     });
-
-    this.spotifyService.link = this.artist.url;
 
     let artistURI = "https://open.spotify.com/embed/artist/" + this.artistId;
     document.querySelector("#musicPlayer").setAttribute("src", artistURI);
