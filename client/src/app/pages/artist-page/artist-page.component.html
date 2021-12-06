@@ -3,10 +3,12 @@
     <!--TODO: populate with artist name-->
     <h1>{{ artist.name }}</h1>
     <!--TODO: populate with artist image URL-->
-    <img id="artistImg" [src]="artist.imageURL">
+    <img id="artistImg" [src]="artist.imageURL" />
     <p>
       <!--TODO: link to artist page on spotify, display artist name-->
-      <a class="btn btn-light" role="button" target="_blank" [href]="artist.url">Open {{ artist.name }} on Spotify</a>
+      <a class="btn btn-light" role="button" target="_blank" [href]="artist.url"
+        >Open {{ artist.name }} on Spotify</a
+      >
     </p>
   </div>
   <div class="col-2">
@@ -15,8 +17,7 @@
       <!--TODO: loop over artist's genres and display them-->
       <li>{{ genre }}</li>
     </ul>
-    <p>
-    </p>
+    <p></p>
   </div>
   <div class="col-4">
     <!--TODO: display artist name-->
@@ -38,5 +39,13 @@
     <!--TODO: Display a carousel component for similar artists. Bind carousel's resources and give it a static carouselId.-->
     <app-carousel carouselId="similarArtistsCarousel" [resources]="relatedArtists"></app-carousel>
   </div>
-
 </div>
+
+<iframe
+  id="musicPlayer"
+  width="300"
+  height="380"
+  frameborder="0"
+  allowtransparency="true"
+  allow="encrypted-media"
+></iframe>
