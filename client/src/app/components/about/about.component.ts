@@ -1,32 +1,30 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { SpotifyService } from 'src/app/services/spotify.service';
+import { Component, Injectable, OnInit } from "@angular/core";
+import { SpotifyService } from "src/app/services/spotify.service";
 
 @Component({
-    selector: 'app-about',
-    templateUrl: './about.component.html',
-    styleUrls: ['./about.component.css']
+  selector: "app-about",
+  templateUrl: "./about.component.html",
+  styleUrls: ["./about.component.css"],
 })
-
 @Injectable()
 export class AboutComponent implements OnInit {
-    name: string = null;
-    profile_pic: string = "../../../assets/unknown.jpg";
-    profile_link: string = null;
+  name: string = null;
+  profile_pic: string = "../../../assets/unknown.jpg";
+  profile_link: string = null;
 
-    //TODO: inject the Spotify service
-    constructor(private spotify: SpotifyService) {
-    }
+  //TODO: inject the Spotify service
+  constructor(private spotify: SpotifyService) {}
 
-    ngOnInit() {
-    }
+  ngOnInit() {}
 
-    /*TODO: create a function which gets the "about me" information from Spotify when the button in the view is clicked.
+  /*TODO: create a function which gets the "about me" information from Spotify when the button in the view is clicked.
     In that function, update the name, profile_pic, and profile_link fields */
-    getAboutMe() {
-        this.spotify.aboutMe().then((data) => {
-            this.name = data.name;
-            this.profile_pic = data.imageURL;
-            this.profile_link = data.spotifyProfile;
-        });
-    }
+  getAboutMe() {
+    this.spotify.aboutMe().then((data) => {
+      this.name = data.name;
+      this.profile_pic = data.imageURL;
+      this.profile_link = data.spotifyProfile;
+      this.spotify.profileLink = this.profile_link;
+    });
+  }
 }
