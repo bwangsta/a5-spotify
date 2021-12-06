@@ -28,6 +28,9 @@ export class AlbumPageComponent implements OnInit {
         this.spotifyService.getTracksForAlbum(this.albumId).then(data => {
             this.tracks = data;
         });
+
+        let albumURI = "https://open.spotify.com/embed/album/" + this.albumId;
+        document.querySelector("#musicPlayer").setAttribute('src', albumURI);
     }
 
 }

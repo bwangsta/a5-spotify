@@ -29,6 +29,9 @@ export class TrackPageComponent implements OnInit {
             this.audioFeatures = data;
             console.log(this.audioFeatures);
         });
+
+        let trackURI = "https://open.spotify.com/embed/track/" + this.trackId;
+        document.querySelector("#musicPlayer").setAttribute('src', trackURI);
     }
 
 }

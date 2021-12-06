@@ -37,6 +37,9 @@ export class ArtistPageComponent implements OnInit {
         this.spotifyService.getTopTracksForArtist(this.artistId).then(data => {
             this.topTracks = data;
         });
+
+        let topTracksURI = "https://open.spotify.com/embed/artists/" + this.artistId + "/top-tracks";
+        document.querySelector("#musicPlayer").setAttribute('src', topTracksURI);
     }
 
 }
