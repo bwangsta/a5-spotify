@@ -5,7 +5,6 @@ import { TrackData } from "../../data/track-data";
 import { AlbumData } from "../../data/album-data";
 import { SpotifyService } from "src/app/services/spotify.service";
 import { PredictionEvent } from "src/app/prediction-event";
-import { Location } from "@angular/common";
 
 @Component({
   selector: "app-artist-page",
@@ -20,11 +19,7 @@ export class ArtistPageComponent implements OnInit {
   albums: AlbumData[];
   gesture: string;
 
-  constructor(
-    private route: ActivatedRoute,
-    private spotifyService: SpotifyService,
-    private _location: Location
-  ) {}
+  constructor(private route: ActivatedRoute, private spotifyService: SpotifyService) {}
 
   ngOnInit() {
     this.artistId = this.route.snapshot.paramMap.get("id");
@@ -56,9 +51,9 @@ export class ArtistPageComponent implements OnInit {
     if (this.gesture === "Two Closed Hands") {
       window.location.href = this.spotifyService.link;
     } else if (this.gesture === "Swiping Right") {
-      this._location.back();
+      this.spotifyService.back();
     } else if (this.gesture === "Swiping Left") {
-      this._location.forward();
+      this.spotifyService.forward();
     }
   }
 }

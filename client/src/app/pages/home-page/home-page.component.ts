@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { PredictionEvent } from "../../prediction-event";
 import { SpotifyService } from "src/app/services/spotify.service";
-import { Location } from "@angular/common";
 
 @Component({
   selector: "app-home-page",
@@ -10,7 +9,7 @@ import { Location } from "@angular/common";
 })
 export class HomePageComponent implements OnInit {
   gesture: String = "";
-  constructor(private spotifyService: SpotifyService, private _location: Location) {}
+  constructor(private spotifyService: SpotifyService) {}
 
   ngOnInit(): void {}
 
@@ -21,9 +20,9 @@ export class HomePageComponent implements OnInit {
     } else if (this.gesture === "Open Hand") {
       window.location.href = "http://localhost:8888/login";
     } else if (this.gesture === "Swiping Right") {
-      this._location.back();
+      this.spotifyService.back();
     } else if (this.gesture === "Swiping Left") {
-      this._location.forward();
+      this.spotifyService.forward();
     }
   }
 }

@@ -6,6 +6,7 @@ import { TrackData } from "../data/track-data";
 import { ResourceData } from "../data/resource-data";
 import { ProfileData } from "../data/profile-data";
 import { TrackFeature } from "../data/track-feature";
+import { Location } from "@angular/common";
 
 @Injectable({
   providedIn: "root",
@@ -14,7 +15,7 @@ export class SpotifyService {
   expressBaseUrl: string = "http://localhost:8888";
   link: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private _location: Location) {}
 
   private sendRequestToExpress(endpoint: string): Promise<any> {
     //TODO: use the injected http Service to make a get request to the Express endpoint and return the response.
@@ -23,6 +24,14 @@ export class SpotifyService {
     let promise = this.http.get(this.expressBaseUrl + endpoint).toPromise();
 
     return Promise.resolve(promise);
+  }
+
+  back() {
+    this._location.back();
+  }
+
+  forward() {
+    this._location.forward();
   }
 
   aboutMe(): Promise<ProfileData> {
