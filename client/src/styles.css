@@ -21,3 +21,11 @@ button, .btn {
 a {
 	color: var(--orange);
 }
+
+i {
+  padding-left: 5px;
+}
+
+iframe {
+  margin: 2rem 0;
+}

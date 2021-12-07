@@ -14,9 +14,8 @@
     </p>
     <p>
       <!--TODO: link to artist page on spotify, display artist name-->
-      <a class="btn btn-light" role="button" target="_blank" [href]="album.url"
-        >Open {{ album.name }} on Spotify</a
-      >
+      <a class="btn btn-success" role="button" target="_blank" [href]="album.url">Open {{ album.name }} on Spotify <i
+          class="fab fa-spotify"></i></a>
     </p>
   </div>
   <div class="col-6">
@@ -26,11 +25,5 @@
   </div>
 </div>
 
-<iframe
-  id="musicPlayer"
-  width="300"
-  height="380"
-  frameborder="0"
-  allowtransparency="true"
-  allow="encrypted-media"
-></iframe>
+<iframe id="musicPlayer" width="100%" height="300" frameborder="0" allowtransparency="true"
+  allow="encrypted-media"></iframe>

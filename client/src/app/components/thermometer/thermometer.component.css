@@ -1,5 +1,10 @@
 .progress {
 	margin: 10px;
-	height: 20px;
-	overflow: visible;
+	height: 25px;
+	/* overflow: visible; */
+}
+
+.progress-bar {
+  color: black;
+  font-weight: 700;
 }

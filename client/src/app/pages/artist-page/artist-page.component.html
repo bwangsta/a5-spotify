@@ -9,24 +9,29 @@
     <img id="artistImg" [src]="artist.imageURL" />
     <p>
       <!--TODO: link to artist page on spotify, display artist name-->
-      <a class="btn btn-light" role="button" target="_blank" [href]="artist.url"
-        >Open {{ artist.name }} on Spotify</a
-      >
+      <a class="btn btn-success" role="button" target="_blank" [href]="artist.url">Open {{ artist.name }} on Spotify<i
+          class="fab fa-spotify"></i></a>
     </p>
   </div>
   <div class="col-2">
     <h3>Genres</h3>
-    <ul *ngFor="let genre of artist.genres">
+    <ul *ngFor="let genre of artist.genres" class="list-group">
       <!--TODO: loop over artist's genres and display them-->
-      <li>{{ genre }}</li>
+      <li class="list-group-item">{{ genre }}</li>
     </ul>
-    <p></p>
   </div>
   <div class="col-4">
     <!--TODO: display artist name-->
     <h3>{{ artist.name }}'s Top Tracks</h3>
     <!--TODO: display the artist's top tracks-->
     <app-track-list [tracks]="topTracks"></app-track-list>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <iframe id="musicPlayer" width="100%" height="400" frameborder="0" allowtransparency="true"
+      allow="encrypted-media"></iframe>
   </div>
 </div>
 
@@ -43,12 +48,3 @@
     <app-carousel carouselId="similarArtistsCarousel" [resources]="relatedArtists"></app-carousel>
   </div>
 </div>
-
-<iframe
-  id="musicPlayer"
-  width="300"
-  height="380"
-  frameborder="0"
-  allowtransparency="true"
-  allow="encrypted-media"
-></iframe>
