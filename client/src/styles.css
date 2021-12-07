@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-	background-color: var(--dark);
+	background-color: #191414;
 	color: var(--light);
 	font-family: 'Lato', sans-serif;
 }
@@ -19,7 +19,7 @@ button, .btn {
 }
 
 a {
-	color: var(--orange);
+	color: #1DB954;
 }
 
 i {
