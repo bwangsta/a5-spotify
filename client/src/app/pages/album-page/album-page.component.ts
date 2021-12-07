@@ -7,38 +7,42 @@ import { SpotifyService } from "src/app/services/spotify.service";
 import { PredictionEvent } from "src/app/prediction-event";
 
 @Component({
-  selector: "app-album-page",
-  templateUrl: "./album-page.component.html",
-  styleUrls: ["./album-page.component.css"],
+    selector: "app-album-page",
+    templateUrl: "./album-page.component.html",
+    styleUrls: ["./album-page.component.css"],
 })
 export class AlbumPageComponent implements OnInit {
-  albumId: string;
-  album: AlbumData;
-  tracks: TrackData[];
-  gesture: string;
+    albumId: string;
+    album: AlbumData;
+    tracks: TrackData[];
+    gesture: string;
 
-  constructor(private route: ActivatedRoute, private spotifyService: SpotifyService) {}
+    constructor(private route: ActivatedRoute, private spotifyService: SpotifyService) { }
 
-  ngOnInit() {
-    this.albumId = this.route.snapshot.paramMap.get("id");
-    //TODO: inject spotifyService and use it to get the album data and the tracks for the album
-    this.spotifyService.getAlbum(this.albumId).then((data) => {
-      this.album = data;
-      this.spotifyService.link = this.album.url;
-    });
+    ngOnInit() {
+        this.albumId = this.route.snapshot.paramMap.get("id");
+        //TODO: inject spotifyService and use it to get the album data and the tracks for the album
+        this.spotifyService.getAlbum(this.albumId).then((data) => {
+            this.album = data;
+            this.spotifyService.link = this.album.url;
+        });
 
-    this.spotifyService.getTracksForAlbum(this.albumId).then((data) => {
-      this.tracks = data;
-    });
+        this.spotifyService.getTracksForAlbum(this.albumId).then((data) => {
+            this.tracks = data;
+        });
 
-    let albumURI = "https://open.spotify.com/embed/album/" + this.albumId;
-    document.querySelector("#musicPlayer").setAttribute("src", albumURI);
-  }
-
-  prediction(event: PredictionEvent) {
-    this.gesture = event.getPrediction();
-    if (this.gesture === "Two Closed Hands") {
-      window.location.href = this.spotifyService.link;
+        let albumURI = "https://open.spotify.com/embed/album/" + this.albumId;
+        document.querySelector("#musicPlayer").setAttribute("src", albumURI);
     }
-  }
+
+    prediction(event: PredictionEvent) {
+        this.gesture = event.getPrediction();
+        if (this.gesture === "Two Closed Hands") {
+            window.location.href = this.spotifyService.link;
+        }
+        else if (this.gesture === "Hand Pointing") {
+            let topTrackId = this.tracks[0].id;
+            window.location.href = "track/" + topTrackId;
+        }
+    }
 }
