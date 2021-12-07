@@ -59,5 +59,8 @@ export class ArtistPageComponent implements OnInit {
             let topTrackId = this.topTracks[0].id;
             window.location.href = "track/" + topTrackId;
         }
+        else if (this.gesture === "Hand Pinching") {
+            window.location.href = "/";
+        }
     }
 }

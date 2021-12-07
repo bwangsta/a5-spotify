@@ -44,5 +44,8 @@ export class AlbumPageComponent implements OnInit {
             let topTrackId = this.tracks[0].id;
             window.location.href = "track/" + topTrackId;
         }
+        else if (this.gesture === "Hand Pinching") {
+            window.location.href = "/";
+        }
     }
 }
