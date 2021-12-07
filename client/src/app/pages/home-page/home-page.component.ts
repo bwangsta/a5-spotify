@@ -1,22 +1,25 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { PredictionEvent } from "../../prediction-event";
 import { SpotifyService } from "src/app/services/spotify.service";
 
 @Component({
-  selector: "app-home-page",
-  templateUrl: "./home-page.component.html",
-  styleUrls: ["./home-page.component.css"],
+    selector: "app-home-page",
+    templateUrl: "./home-page.component.html",
+    styleUrls: ["./home-page.component.css"],
 })
 export class HomePageComponent implements OnInit {
-  gesture: String = "";
-  constructor(private spotifyService: SpotifyService) {}
+    gesture: String = "";
+    constructor(private spotifyService: SpotifyService) { }
 
-  ngOnInit(): void {}
+    ngOnInit(): void { }
 
-  prediction(event: PredictionEvent) {
-    this.gesture = event.getPrediction();
-    if (this.gesture === "Two Closed Hands") {
-      window.location.href = this.spotifyService.link;
+    prediction(event: PredictionEvent) {
+        this.gesture = event.getPrediction();
+        if (this.gesture === "Two Closed Hands") {
+            window.location.href = this.spotifyService.link;
+        }
+        else if (this.gesture === "Open Hand") {
+            window.location.href = "http://localhost:8888/login";
+        }
     }
-  }
 }
