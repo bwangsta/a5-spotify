@@ -37,13 +37,13 @@ export class TrackPageComponent implements OnInit {
         document.querySelector("#musicPlayer").setAttribute("src", trackURI);
     }
 
-    prediction(event: PredictionEvent) {
-        this.gesture = event.getPrediction();
-        if (this.gesture === "Two Closed Hands") {
-            window.location.href = this.spotifyService.link;
-        }
-        else if (this.gesture === "Hand Pinching") {
-            window.location.href = "/";
-        }
-    }
+    // prediction(event: PredictionEvent) {
+    //     this.gesture = event.getPrediction();
+    //     if (this.gesture === "Two Closed Hands") {
+    //         window.location.href = this.spotifyService.link;
+    //     }
+    //     else if (this.gesture === "Hand Pinching") {
+    //         window.location.href = "/";
+    //     }
+    // }
 }

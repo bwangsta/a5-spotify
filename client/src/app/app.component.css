@@ -1,3 +1,16 @@
 nav {
 	margin-bottom: 20px;
+  color:#121212;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.nav-item.btn {
+  border-radius: 50%;
+}
+
+h5 {
+  color:black;
 }

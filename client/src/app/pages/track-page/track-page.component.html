@@ -1,18 +1,6 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-6">
-      <app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
-      <div [innerHTML]="gesture"></div>
-    </div>
-    <div *ngIf="audioFeatures" class="col-6">
-      <!--TODO: loop over types of features and create a thermometer component for each-->
-      <app-thermometer *ngFor="let feature of audioFeatures" [name]="feature.name"
-        [percentage]="feature.percentageString" [color]="feature.color"></app-thermometer>
-    </div>
-  </div>
-
-  <div class="row">
     <div *ngIf="track" class="col-6">
       <!--TODO: populate with track name-->
       <h1>{{ track.name }}</h1>
@@ -37,6 +25,15 @@
             class="fab fa-spotify"></i></a>
       </p>
     </div>
+    <div *ngIf="audioFeatures" class="col-6">
+      <!--TODO: loop over types of features and create a thermometer component for each-->
+      <app-thermometer *ngFor="let feature of audioFeatures" [name]="feature.name"
+        [percentage]="feature.percentageString" [color]="feature.color"></app-thermometer>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6"></div>
     <div class="col-6">
       <iframe id="musicPlayer" width="100%" height="380" frameborder="0" allowtransparency="true"
         allow="encrypted-media"></iframe>

@@ -1,17 +1,45 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item navbar-brand">
-      <a class="navbar-brand" href="/">
-        Scuffed Spotify
-      </a>
-    </li>
-  </ul>
-  <ul class="navbar-nav navbar-right ml-auto">
-    <li class="nav-item">
-      <a class="btn btn-dark" role="button" href="http://localhost:8888/login">Login</a>
-    </li>
-  </ul>
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Scuffed Spotify</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#handTrackerModal">
+            Hand Tracker
+          </button>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-light" role="button" href="http://localhost:8888/login">Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="handTrackerModal" tabindex="-1" aria-labelledby="handTrackerModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="handTrackerModal">Hand Tracker</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
+        <div [innerHTML]="gesture"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <main class="container-fluid">
   <router-outlet></router-outlet>
 </main>
