@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { PredictionEvent } from "../../prediction-event";
 import { SpotifyService } from "src/app/services/spotify.service";
 import { Location } from "@angular/common";
