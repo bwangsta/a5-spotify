@@ -18,12 +18,15 @@ export class AppComponent {
         this.gesture = event.getPrediction();
         if (this.gesture === "Two Closed Hands") {
             window.location.href = this.spotifyService.link;
-        } else if (this.gesture === "Closed Hand") {
-            window.location.href = "http://localhost:8888/login";
-        } else if (this.gesture === "Swiping Right") {
+        }
+        else if (this.gesture === "Swiping Right") {
             this.spotifyService.back();
-        } else if (this.gesture === "Swiping Left") {
+        }
+        else if (this.gesture === "Swiping Left") {
             this.spotifyService.forward();
+        }
+        else if (this.gesture === "Closed Hand") {
+            window.location.href = "http://localhost:8888/login";
         }
         // else if (this.gesture === "Hand Pointing") {
         //     let topTrackId = this.topTracks[0].id;
