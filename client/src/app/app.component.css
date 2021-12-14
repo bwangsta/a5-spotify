@@ -5,13 +5,21 @@ nav {
 
 .navbar-brand {
   color: white;
+  font-weight: 800;
+  font-size: 2em;
+  text-transform: uppercase;
 }
 
-.nav-item.btn {
-  border-radius: 50%;
+.navbar-brand:hover {
+  color: #1DB954;
 }
 
 #gesture,
 h5 {
   color:black;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
 }

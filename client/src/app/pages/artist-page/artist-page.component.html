@@ -1,5 +1,5 @@
 <div *ngIf="artist" class="row">
-  <div class="col-6">
+  <div class="col-4">
     <!--TODO: populate with artist name-->
     <h1>{{ artist.name }}</h1>
     <!--TODO: populate with artist image URL-->
@@ -10,7 +10,7 @@
           class="fab fa-spotify"></i></a>
     </p>
   </div>
-  <div class="col-2">
+  <div class="col-4">
     <h3>Genres</h3>
     <ul *ngFor="let genre of artist.genres" class="list-group">
       <!--TODO: loop over artist's genres and display them-->

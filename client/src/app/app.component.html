@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Bozofy</a>
+    <a class="navbar-brand" href="/"><i class="fab fa-spotify fa-rotate-180"></i>Bozofy</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#handTrackerModal">
+          <button type="button" class="btn btn-light" data-toggle="modal" data-target="#handTrackerModal">
             Hand Tracker
           </button>
         </li>
@@ -22,19 +22,22 @@
 </nav>
 
 <!-- Modal -->
-<div class="modal fade" id="handTrackerModal" tabindex="-1" aria-labelledby="handTrackerModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" id="handTrackerModal" tabindex="-1" role="dialog" aria-labelledby="handTrackerModal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="handTrackerModal">Hand Tracker</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
         <app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
         <div id="gesture" [innerHTML]="gesture"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

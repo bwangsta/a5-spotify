@@ -1,9 +1,11 @@
 <div class="card">
-  <!--TODO bind src with the album/artist/song image URRL-->
+  <!--TODO: bind href to the appropriate local URL for the album/artist/song.-->
   <a href="{{ resource.category }}/{{ resource.id }}">
-    <img class=" d-block w-100" [src]="resource.imageURL">
+    <!--TODO bind src with the album/artist/song image URRL-->
+    <img class="d-block w-100" [src]="resource.imageURL">
   </a>
   <div class="card-body">
+    <!--TODO: populate h5 with the album/artist/song name-->
     <h5 class="card-title">{{ resource.name }}</h5>
   </div>
 </div>
